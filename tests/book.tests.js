@@ -104,6 +104,7 @@ describe('/books', () => {
       expect(response.body.error).to.equal('The item could not be found.');
     });
   });
+
   describe('DELETE /books/:id', () => {
     it('deletes book record by id', async () => {
       const book = books[0];

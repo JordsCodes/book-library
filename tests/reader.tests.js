@@ -115,6 +115,7 @@ describe('/readers', () => {
 
         response.body.forEach((reader) => {
           const expected = readers.find((a) => a.id === reader.id);
+
           expect(reader.name).to.equal(expected.name);
           expect(reader.email).to.equal(expected.email);
           expect(!reader.password);
@@ -139,11 +140,14 @@ describe('/readers', () => {
         expect(response.body.email).to.equal(reader.email);
         expect(response.body.Books[0].title).to.equal('Frankenstein');
       });
+
       it('does not return password', async () => {
         const reader = readers[0];
         const response = await request(app).get(`/readers/${reader.id}`);
+
         expect(response.body.password).to.equal(undefined);
       });
+
       it('returns a 404 if the reader does not exist', async () => {
         const response = await request(app).get('/readers/12345');
 
@@ -161,17 +165,21 @@ describe('/readers', () => {
         const updatedReaderRecord = await Reader.findByPk(reader.id, {
           raw: true,
         });
+
         expect(response.status).to.equal(200);
         expect(response.body.email).to.equal('miss_e_bennet@gmail.com');
         expect(updatedReaderRecord.email).to.equal('miss_e_bennet@gmail.com');
       });
+
       it('does not return password', async () => {
         const reader = readers[0];
         const response = await request(app)
           .patch(`/readers/${reader.id}`)
           .send({ email: 'miss_e_bennet@gmail.com' });
+
         expect(response.body.password).to.equal(undefined);
       });
+
       it('returns a 404 if the reader does not exist', async () => {
         const response = await request(app)
           .patch('/readers/12345')
@@ -194,6 +202,7 @@ describe('/readers', () => {
 
       it('returns a 404 if the reader does not exist', async () => {
         const response = await request(app).delete('/readers/12345');
+
         expect(response.status).to.equal(404);
         expect(response.body.error).to.equal('The item could not be found.');
       });

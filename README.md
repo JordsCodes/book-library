@@ -50,9 +50,7 @@ To add a genre, author or reader to the database, make a POST request to:
 
 Request body:
 
-`{
-    "{genre, author or reader here}": "{genre, author or reader here}"
-}`
+`"{genre, author or reader here}": "{genre, author or reader here}"`
 
 
 To add a book to the database, make a POST request to: 
@@ -62,13 +60,16 @@ To add a book to the database, make a POST request to:
 
 Request body:
 
-`{
-    "title": "Charlie and the Chocolate Factory",
-    "ISBN": "12345678910,
-    "GenreId: "1",
-    "AuthorId: "1",
-    "ReaderId: "1",
-}`
+```
+{
+"title": "Charlie and the Chocolate Factory",
+"ISBN": "12345678910,
+"GenreId: "1",
+"AuthorId: "1",
+"ReaderId: "1",
+}
+```
+
 
 Note that the GenreId, AuthorId, and ReaderId properties of Books can be left null and updated via patch request later.
 
@@ -104,19 +105,15 @@ To delete an entry, make a DELETE request to the desired id:
 
 ### Notes
 
-At present, the testing suite does not account for the possibility of genres, authors and readers returning several books. This is a bug connected to the async nature of the testing suite - sometimes values are returned in the "incorrect" order. This functionality has been tested and confirmed as functioning in Postman however.
+At present, the testing suite does not account for the possibility of genres, authors and readers returning several books. This is a bug connected to the async nature of the testing suite - sometimes values are returned in the "incorrect" order. This functionality has been tested and confirmed as functioning in Postman.
 
 ## Credits
 
-Command Shift:
+[Command Shift](https://github.com/CommandShiftHQ)
 
-https://github.com/CommandShiftHQ
+[Jordan Noble Twitter](https://twitter.com/JordsCodes)
 
-Jordan Noble:
-
-https://twitter.com/JordsCodes
-
-https://www.linkedin.com/in/jordan-noble-a9b931267/
+[Jordan Noble LinkedIn](https://www.linkedin.com/in/jordan-noble-a9b931267/)
 
 
 

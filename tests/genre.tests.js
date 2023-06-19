@@ -27,6 +27,7 @@ describe('/genres', () => {
         expect(newGenreRecord.genre).to.equal('Horror');
       });
     });
+
     it('throws an error if genre is null', async () => {
       const response = await request(app).post('/genres').send();
       expect(response.status).to.equal(400);
@@ -71,6 +72,7 @@ describe('/genres', () => {
         });
       });
     });
+
     describe('GET /genres/:id', () => {
       it('gets genre record by id and associated books', async () => {
         const genre = genres[0];
@@ -80,6 +82,7 @@ describe('/genres', () => {
         expect(response.body.genre).to.equal(genre.genre);
         expect(response.body.Books[0].title).to.equal('Frankenstein');
       });
+
       it('returns a 404 if the genre does not exist', async () => {
         const response = await request(app).get('/genres/12345');
 
@@ -101,6 +104,7 @@ describe('/genres', () => {
         expect(response.body.genre).to.equal('Horror');
         expect(updatedGenreRecord.genre).to.equal('Horror');
       });
+
       it('returns a 404 if the genre does not exist', async () => {
         const response = await request(app)
           .patch('/genres/12345')

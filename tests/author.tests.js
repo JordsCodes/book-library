@@ -27,6 +27,7 @@ describe('/authors', () => {
         expect(newAuthorRecord.author).to.equal('Stephen King');
       });
     });
+
     it('throws an error if author is null', async () => {
       const response = await request(app).post('/authors').send();
       expect(response.status).to.equal(400);
@@ -87,6 +88,7 @@ describe('/authors', () => {
         expect(response.body.author).to.equal(author.author);
         expect(response.body.Books[0].title).to.equal('Frankenstein');
       });
+
       it('returns a 404 if the author does not exist', async () => {
         const response = await request(app).get('/authors/12345');
 
@@ -108,6 +110,7 @@ describe('/authors', () => {
         expect(response.body.author).to.equal('Roald Dahl');
         expect(updatedAuthorRecord.author).to.equal('Roald Dahl');
       });
+
       it('returns a 404 if the author does not exist', async () => {
         const response = await request(app)
           .patch('/authors/12345')
